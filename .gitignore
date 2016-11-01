@@ -54,9 +54,11 @@ dkms.conf
 **/.vscode
 
 # Project's binary files
-**/bin
+**/output
 
-# Keil's not-mandatory generated files
+# Keil's generated files
 *.lst
 *.dep
 *.uvgui*
+*.build_log.htm
+*.bak
