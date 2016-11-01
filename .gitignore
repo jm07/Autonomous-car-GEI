@@ -51,7 +51,7 @@ Mkfile.old
 dkms.conf
 
 # Visual Studio Code files
-*.vscode
+**/.vscode
 
 # Project's binary files
 **/bin
