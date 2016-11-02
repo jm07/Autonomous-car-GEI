@@ -56,6 +56,10 @@ dkms.conf
 # Project's binary files
 **/output
 
+# Keil's project files
+*.uvproj
+*.uvopt
+
 # Keil's generated files
 *.lst
 *.dep
