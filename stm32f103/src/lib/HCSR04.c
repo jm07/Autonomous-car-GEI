@@ -1,6 +1,6 @@
 #include "HCSR04.h"
 
-HCSR04_InitReturnType HCSR04_Initialize(HCSR04_InitTypeDef* init_struct) {
+HCSR04_InitReturnType HCSR04_initialize(HCSR04_InitTypeDef* init_struct) {
   GPIO_InitTypeDef echoPin;
   GPIO_InitTypeDef trigPin;
   TIM_ICInitTypeDef timerForEchoPin;
@@ -33,9 +33,9 @@ HCSR04_InitReturnType HCSR04_Initialize(HCSR04_InitTypeDef* init_struct) {
     TIM_SelectInputTrigger(init_struct->timerForEchoPin, TIM_TS_TI2FP2);
     TIM_ITConfig(init_struct->timerForEchoPin, TIM_IT_CC2, ENABLE);
   } else {
-    return TIM_ONLY_CHANNEL_1_2_ACCEPTED;
+    return HCSR04_NOT_CHANNEL_1_2;
   }
   TIM_Cmd(init_struct->timerForEchoPin, ENABLE);
   
-  return INIT_OK;
+  return HCSR04_INIT_OK;
 }

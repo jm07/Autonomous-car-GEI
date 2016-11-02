@@ -7,8 +7,8 @@
 #define TIM_NO_FILTER 0x0
 
 typedef enum {
-  INIT_OK,
-  TIM_ONLY_CHANNEL_1_2_ACCEPTED
+  HCSR04_INIT_OK,
+  HCSR04_NOT_CHANNEL_1_2
 } HCSR04_InitReturnType;
 
 typedef struct {
@@ -21,6 +21,6 @@ typedef struct {
   uint16_t timerChannelForEchoPin;
 } HCSR04_InitTypeDef;
 
-HCSR04_InitReturnType HCSR04_Initialize(HCSR04_InitTypeDef* init_struct);
+HCSR04_InitReturnType HCSR04_initialize(HCSR04_InitTypeDef* init_struct);
 
 #endif // _HCSR04_H_
