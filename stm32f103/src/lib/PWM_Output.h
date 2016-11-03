@@ -4,11 +4,14 @@
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_tim.h"
 
-#define COUNTER_CLOCK_FREQ_1MHz  1000000   
+#define COUNTER_CLOCK_FREQ_1MHz  1000000 
+#define PWM_MODE_1               1
+#define PWM_MODE_2               2
 
 typedef enum {
   PWM_INIT_OK,
-  PWM_NOT_CHANNEL_1_2_3_4
+  PWM_NOT_CHANNEL_1_2_3_4,
+  PWM_NOT_MODE_1_2
 } PWM_InitReturnType;
 
 typedef struct {
@@ -19,6 +22,7 @@ typedef struct {
   uint16_t periodUs;
   uint16_t dutyCyclePercent;
   GPIOSpeed_TypeDef speed;
+  uint16_t mode;
 } PWM_InitTypeDef;
 
 PWM_InitReturnType PWM_initialize(PWM_InitTypeDef* init_struct);

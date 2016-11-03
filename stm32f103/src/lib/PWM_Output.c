@@ -21,7 +21,9 @@ PWM_InitReturnType PWM_initialize(PWM_InitTypeDef* init_struct) {
   TIM_TimeBaseInit(init_struct->timer, &timeBaseInit);
   
   // configure a timer channel as pwm output mode 1
-  outputCaptureInit.TIM_OCMode = TIM_OCMode_PWM1;
+  if (init_struct->mode == PWM_MODE_1) outputCaptureInit.TIM_OCMode = TIM_OCMode_PWM1;
+  else if (init_struct->mode == PWM_MODE_2) outputCaptureInit.TIM_OCMode = TIM_OCMode_PWM2;
+  else return PWM_NOT_MODE_1_2;
   outputCaptureInit.TIM_OutputState = TIM_OutputState_Enable;
   outputCaptureInit.TIM_Pulse = (uint16_t)(init_struct->periodUs * init_struct->dutyCyclePercent / 100) - 1;
   outputCaptureInit.TIM_OCPolarity = TIM_OCPolarity_High;
