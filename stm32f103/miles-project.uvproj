@@ -356,13 +356,13 @@
             <wLevel>0</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\Keil\stm32lib\stm32f10x\peripherals\inc;C:\Keil\stm32lib\stm32f10x\boot</IncludePath>
+              <IncludePath>C:\Keil\stm32lib\stm32f10x\peripherals\inc;C:\Keil\stm32lib\stm32f10x\boot;./src/lib</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -549,6 +549,23 @@
         </Group>
         <Group>
           <GroupName>Lib</GroupName>
+          <Files>
+            <File>
+              <FileName>HCSR04.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\lib\HCSR04.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM_Output.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\lib\PWM_Output.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\lib\motor_control.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
@@ -902,13 +919,13 @@
             <wLevel>0</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>C:\Keil\stm32lib\stm32f10x\peripherals\inc;C:\Keil\stm32lib\stm32f10x\boot</IncludePath>
+              <IncludePath>C:\Keil\stm32lib\stm32f10x\peripherals\inc;C:\Keil\stm32lib\stm32f10x\boot;./src/lib</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1095,6 +1112,23 @@
         </Group>
         <Group>
           <GroupName>Lib</GroupName>
+          <Files>
+            <File>
+              <FileName>HCSR04.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\lib\HCSR04.c</FilePath>
+            </File>
+            <File>
+              <FileName>PWM_Output.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\lib\PWM_Output.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\lib\motor_control.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
