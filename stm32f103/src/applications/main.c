@@ -16,6 +16,7 @@ int main (void)
   HCSR04_InitTypeDef HCSR04;
   PWM_InitTypeDef pwm1;
   PWM_InitTypeDef pwm2;
+  
   /*
   HCSR04.echoPin = GPIO_Pin_4;
   HCSR04.echoPinPort = GPIOA;
@@ -24,8 +25,8 @@ int main (void)
   HCSR04.speed = GPIO_Speed_50MHz;
   HCSR04.timerForEchoPin = TIM2;
   HCSR04.timerChannelForEchoPin = TIM_Channel_1;
+  HCSR04_initialize(&HCSR04);
   */
-  //HCSR04_initialize(&HCSR04);
   
   pwm1.outputPin = GPIO_Pin_7;
   pwm1.outputPinPort = GPIOA;

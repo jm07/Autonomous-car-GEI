@@ -45,3 +45,26 @@ PWM_InitReturnType PWM_initialize(PWM_InitTypeDef* init_struct) {
   
   return PWM_INIT_OK;
 }
+
+
+void PWM_CmdDutyCycle(PWM_InitTypeDef* init_struct, uint16_t duty_cycle_percent) {
+  uint16_t pulseLength = (uint16_t)(init_struct->periodUs * duty_cycle_percent / 100) - 1;
+  TIM_TypeDef* timer = init_struct->timer;
+  if (init_struct->timerChannel == TIM_Channel_1) {
+    TIM_SetCompare1(timer, pulseLength);
+  } else if (init_struct->timerChannel == TIM_Channel_2) {
+    TIM_SetCompare2(timer, pulseLength);
+  } else if (init_struct->timerChannel == TIM_Channel_3) {
+    TIM_SetCompare3(timer, pulseLength);
+  } else if (init_struct->timerChannel == TIM_Channel_4) {
+    TIM_SetCompare4(timer, pulseLength);
+  } else return;
+  init_struct->dutyCyclePercent = duty_cycle_percent;
+}
+
+
+
+void PWM_CmdPeriod(PWM_InitTypeDef* init_struct, uint16_t period_us) {
+  TIM_SetAutoreload(init_struct->timer, period_us); 
+  init_struct->periodUs = period_us;
+}

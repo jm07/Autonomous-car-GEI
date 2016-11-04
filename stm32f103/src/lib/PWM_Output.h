@@ -26,5 +26,7 @@ typedef struct {
 } PWM_InitTypeDef;
 
 PWM_InitReturnType PWM_initialize(PWM_InitTypeDef* init_struct);
+void PWM_CmdPeriod(PWM_InitTypeDef* init_struct, uint16_t period_us);
+void PWM_CmdDutyCycle(PWM_InitTypeDef* init_struct, uint16_t duty_cycle_percent);
 
 #endif // _PWM_OUTPUT_H_
