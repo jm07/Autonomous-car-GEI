@@ -7,6 +7,8 @@
 #define COUNTER_CLOCK_FREQ_1MHz  1000000 
 #define PWM_MODE_1               1
 #define PWM_MODE_2               2
+#define DUTY_CYCLE_MIN           0
+#define DUTY_CYCLE_MAX           100
 
 typedef enum {
   PWM_INIT_OK,
@@ -23,10 +25,10 @@ typedef struct {
   uint16_t dutyCyclePercent;
   GPIOSpeed_TypeDef speed;
   uint16_t mode;
-} PWM_InitTypeDef;
+} PWM_TypeDef;
 
-PWM_InitReturnType PWM_initialize(PWM_InitTypeDef* init_struct);
-void PWM_CmdPeriod(PWM_InitTypeDef* init_struct, uint16_t period_us);
-void PWM_CmdDutyCycle(PWM_InitTypeDef* init_struct, uint16_t duty_cycle_percent);
+PWM_InitReturnType PWM_initialize(PWM_TypeDef* init_struct);
+void PWM_CmdPeriod(PWM_TypeDef* init_struct, uint16_t period_us);
+void PWM_CmdDutyCycle(PWM_TypeDef* init_struct, uint16_t duty_cycle_percent);
 
 #endif // _PWM_OUTPUT_H_

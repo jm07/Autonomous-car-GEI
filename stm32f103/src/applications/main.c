@@ -2,6 +2,7 @@
 
 #include "HCSR04.h"
 #include "PWM_Output.h"
+#include "motor_control.h"
 
 int main (void)
 {
@@ -14,8 +15,9 @@ int main (void)
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); 
   
   HCSR04_InitTypeDef HCSR04;
-  PWM_InitTypeDef pwm1;
-  PWM_InitTypeDef pwm2;
+  PWM_TypeDef pwm1;
+  PWM_TypeDef pwm2;
+  Motor_TypeDef motor;
   
   /*
   HCSR04.echoPin = GPIO_Pin_4;
@@ -46,8 +48,11 @@ int main (void)
   pwm2.timer = TIM3;
   pwm2.timerChannel = TIM_Channel_1;
   
-  PWM_initialize(&pwm1);
-  PWM_initialize(&pwm2);
+  motor.pwm1 = &pwm1;
+  motor.pwm2 = &pwm2;
+  
+  motorInit(&motor);
+  motorCmd(&motor, -70);
   
  	while (1);
 }

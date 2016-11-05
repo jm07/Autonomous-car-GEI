@@ -1,6 +1,6 @@
 #include "PWM_Output.h"
 
-PWM_InitReturnType PWM_initialize(PWM_InitTypeDef* init_struct) {
+PWM_InitReturnType PWM_initialize(PWM_TypeDef* init_struct) {
   TIM_TimeBaseInitTypeDef timeBaseInit;
   TIM_OCInitTypeDef outputCaptureInit;
   GPIO_InitTypeDef pinInit;
@@ -47,7 +47,7 @@ PWM_InitReturnType PWM_initialize(PWM_InitTypeDef* init_struct) {
 }
 
 
-void PWM_CmdDutyCycle(PWM_InitTypeDef* init_struct, uint16_t duty_cycle_percent) {
+void PWM_CmdDutyCycle(PWM_TypeDef* init_struct, uint16_t duty_cycle_percent) {
   uint16_t pulseLength = (uint16_t)(init_struct->periodUs * duty_cycle_percent / 100) - 1;
   TIM_TypeDef* timer = init_struct->timer;
   if (init_struct->timerChannel == TIM_Channel_1) {
@@ -64,7 +64,7 @@ void PWM_CmdDutyCycle(PWM_InitTypeDef* init_struct, uint16_t duty_cycle_percent)
 
 
 
-void PWM_CmdPeriod(PWM_InitTypeDef* init_struct, uint16_t period_us) {
+void PWM_CmdPeriod(PWM_TypeDef* init_struct, uint16_t period_us) {
   TIM_SetAutoreload(init_struct->timer, period_us); 
   init_struct->periodUs = period_us;
 }

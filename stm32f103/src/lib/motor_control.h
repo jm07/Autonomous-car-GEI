@@ -5,18 +5,15 @@
 
 #define MOTOR_PWM_PERIOD_US           500
 #define MOTOR_PWM_DEFAULT_DUTY_CYCLE  50
-#define MOTOR_MAX_SPEED               100
+#define MOTOR_SPEED_MAX               100
+#define MOTOR_SPEED_MIN               (-MOTOR_SPEED_MAX)
 
 typedef struct {
-  uint16_t pwmPin1;
-  uint16_t pwmPin2;
-  GPIO_TypeDef* pwmPort1;
-  GPIO_TypeDef* pwmPort2;
-  TIM_TypeDef* pwmTimer;
-  uint16_t pwm1TimerChannel;
-  uint16_t pwm2TimerChannel;
-  uint16_t periodUs;
-  uint16_t gpioSpeed;
-} motorInitTypeDef;
+  PWM_TypeDef* pwm1;
+  PWM_TypeDef* pwm2;
+} Motor_TypeDef;
+
+void motorInit(Motor_TypeDef* init_struct);
+void motorCmd(Motor_TypeDef* motor_struct, int16_t speed);
 
 #endif // _MOTOR_CONTROL_H_
