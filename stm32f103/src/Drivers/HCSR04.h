@@ -22,7 +22,5 @@ typedef struct {
 } HCSR04_InitTypeDef;
 
 HCSR04_InitReturnType HCSR04_initialize(HCSR04_InitTypeDef* init_struct);
-void HRSR04_setTrig(HCSR04_InitTypeDef* init_struct);
-void HRSR04_resetTrig(HCSR04_InitTypeDef* init_struct);
 
 #endif // _HCSR04_H_

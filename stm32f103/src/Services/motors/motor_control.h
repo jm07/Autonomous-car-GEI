@@ -6,7 +6,7 @@
 #define MOTOR_PWM_PERIOD_US           500
 #define MOTOR_PWM_DEFAULT_DUTY_CYCLE  50
 #define MOTOR_SPEED_MAX               100
-#define MOTOR_SPEED_MIN               0
+#define MOTOR_SPEED_MIN               (-MOTOR_SPEED_MAX)
 
 typedef struct {
   PWM_TypeDef* pwm1;

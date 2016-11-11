@@ -27,7 +27,6 @@ PWM_InitReturnType PWM_initialize(PWM_TypeDef* init_struct) {
   outputCaptureInit.TIM_OutputState = TIM_OutputState_Enable;
   outputCaptureInit.TIM_Pulse = (uint16_t)(init_struct->periodUs * init_struct->dutyCyclePercent / 100) - 1;
   outputCaptureInit.TIM_OCPolarity = TIM_OCPolarity_High;
-  
   if (init_struct->timerChannel == TIM_Channel_1) {
     TIM_OC1Init(init_struct->timer, &outputCaptureInit);
     TIM_OC1PreloadConfig(init_struct->timer, TIM_OCPreload_Enable);
@@ -41,7 +40,6 @@ PWM_InitReturnType PWM_initialize(PWM_TypeDef* init_struct) {
     TIM_OC4Init(init_struct->timer, &outputCaptureInit);
     TIM_OC4PreloadConfig(init_struct->timer, TIM_OCPreload_Enable);
   } else return PWM_NOT_CHANNEL_1_2_3_4;
-  
   TIM_ARRPreloadConfig(init_struct->timer, ENABLE);
   TIM_Cmd(init_struct->timer, ENABLE);
   
