@@ -49,15 +49,14 @@ PWM_InitReturnType PWM_initialize(PWM_TypeDef* init_struct) {
 
 void PWM_CmdDutyCycle(PWM_TypeDef* init_struct, uint16_t duty_cycle_percent) {
   uint16_t pulseLength = (uint16_t)(init_struct->periodUs * duty_cycle_percent / 100) - 1;
-  TIM_TypeDef* timer = init_struct->timer;
   if (init_struct->timerChannel == TIM_Channel_1) {
-    TIM_SetCompare1(timer, pulseLength);
+    TIM_SetCompare1(init_struct->timer, pulseLength);
   } else if (init_struct->timerChannel == TIM_Channel_2) {
-    TIM_SetCompare2(timer, pulseLength);
+    TIM_SetCompare2(init_struct->timer, pulseLength);
   } else if (init_struct->timerChannel == TIM_Channel_3) {
-    TIM_SetCompare3(timer, pulseLength);
+    TIM_SetCompare3(init_struct->timer, pulseLength);
   } else if (init_struct->timerChannel == TIM_Channel_4) {
-    TIM_SetCompare4(timer, pulseLength);
+    TIM_SetCompare4(init_struct->timer, pulseLength);
   } else return;
   init_struct->dutyCyclePercent = duty_cycle_percent;
 }
