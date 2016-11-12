@@ -1,6 +1,7 @@
 #include "hall_sensor.h"
 #include "PWM_Output.h"
 #include "motor_control.h"
+#include "tim_mapping.h"
 
 Motor_TypeDef motor;
 __IO int cmd = 55;
@@ -25,16 +26,29 @@ int main(void) {
   PWM_TypeDef pwm1;
   PWM_TypeDef pwm2;
   
+  TIM_CH timPwm1;
+  TIM_CH timPwm2;
+  GPIO_Pin gpioPwm1;
+  GPIO_Pin gpioPwm2;
+  
+  timPwm1.timer = TIM3;
+  timPwm2.timer = TIM3;
+  timPwm1.channel = TIM_Channel_1;
+  timPwm2.channel = TIM_Channel_2;
+  
+  gpioPwm1 = timMap(timPwm1, NO_REMAP);
+  gpioPwm2 = timMap(timPwm2, NO_REMAP);
+  
 	Hall_Config();
   
-  pwm1.outputPin = GPIO_Pin_6;
-  pwm1.outputPinPort = GPIOA;
+  pwm1.outputPin = gpioPwm1.pin;
+  pwm1.outputPinPort = gpioPwm1.port;
   pwm1.speed = GPIO_Speed_50MHz;
   pwm1.timer = TIM3;
   pwm1.timerChannel = TIM_Channel_1;
   
-  pwm2.outputPin = GPIO_Pin_7;
-  pwm2.outputPinPort = GPIOA;
+  pwm2.outputPin = gpioPwm2.pin;
+  pwm2.outputPinPort = gpioPwm2.port;
   pwm2.speed = GPIO_Speed_50MHz;
   pwm2.timer = TIM3;
   pwm2.timerChannel = TIM_Channel_2;
