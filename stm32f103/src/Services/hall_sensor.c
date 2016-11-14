@@ -44,24 +44,21 @@ void Hall_Config(void){
 	Sensor_IT_Config(&structSensor_ARD);
 }
 
-__weak void Hall_AVG_Callback(void){}
-__weak void Hall_AVD_Callback(void){}
-__weak void Hall_ARG_Callback(void){}
-__weak void Hall_ARD_Callback(void){}
+static Hall_Pos_t GPIO_Pin_2_Hall_Pos_t(uint16_t GPIO_Pin);
+
+__weak void Hall_Callback(Hall_Pos_t pos){}
 
 
-void Sensor_IT_AVG_Callback(void){
-	Hall_AVG_Callback();
+void HAL_GPIO_EXTI_Callback (uint16_t GPIO_Pin){
+	Hall_Callback(GPIO_Pin_2_Hall_Pos_t(GPIO_Pin));
 }
 
-void Sensor_IT_AVD_Callback(void){
-	Hall_AVD_Callback();
+
+Hall_Pos_t GPIO_Pin_2_Hall_Pos_t(uint16_t GPIO_Pin){
+			 if(GPIO_Pin == pin_AVG) return AVG;
+	else if(GPIO_Pin == pin_AVD) return AVD;
+	else if(GPIO_Pin == pin_ARG) return ARG;
+	else /*if(GPIO_Pin == pin_ARD)*/ return ARD;
 }
 
-void Sensor_IT_ARG_Callback(void){
-	Hall_ARG_Callback();
-}
 
-void Sensor_IT_ARD_Callback(void){
-	Hall_ARD_Callback();
-}

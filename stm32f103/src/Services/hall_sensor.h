@@ -3,6 +3,8 @@
 
 #include "sensor_IT.h"
 
+#define HALL_NB 			4
+
 #define pin_AVG 						    GPIO_Pin_9
 #define port_AVG						    GPIOC
 #define preemptionPrio_AVG 		  0x0F
@@ -27,11 +29,15 @@
 #define subPrio_ARD 					  0x0F
 #define Sensor_IT_ARD_Callback 	Sensor_IT15_Callback
 
+typedef enum Hall_Pos_t {
+	AVG = 0, 
+	AVD = 1, 
+	ARG = 2, 
+	ARD = 3
+} Hall_Pos_t;
+
 void Hall_Config(void);
 
-void Hall_AVG_Callback(void);
-void Hall_AVD_Callback(void);
-void Hall_ARG_Callback(void);
-void Hall_ARD_Callback(void);
+void Hall_Callback(Hall_Pos_t pos);
 
 #endif // __HALL_SENSOR_H

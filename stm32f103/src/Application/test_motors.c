@@ -7,6 +7,10 @@
 __IO int front = 0;
 __IO int rear = 0;
 
+static int c[HALL_NB]={0};
+
+void count_pulse(Hall_Pos_t pos);
+
 int main(void) {
   initServices();
   initFrontMotor();
@@ -37,11 +41,14 @@ int main(void) {
   }
 }
 
-void Hall_AVG_Callback(void) {
-  commandFrontMotor(STOP);
-  disableFrontMotor();
+void Hall_Callback(Hall_Pos_t pos) {
+	if(pos == AVG || pos == AVD){
+		commandFrontMotor(STOP);
+		disableFrontMotor();
+	}
 }
-void Hall_AVD_Callback(void) {
-  commandFrontMotor(STOP);
-  disableFrontMotor();
+
+
+void count_pulse(Hall_Pos_t pos){
+	c[(int)pos]++;
 }
