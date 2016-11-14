@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "time_systick.h"
 
 void initSystick(void) {
@@ -6,7 +7,7 @@ void initSystick(void) {
   NVIC_SetPriority(SysTick_IRQn, 0);
 }
 
-unsigned long long micros(void) {
+uint64_t micros(void) {
   return timeMicros;
 }
 
