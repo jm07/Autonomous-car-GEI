@@ -49,7 +49,7 @@ static Hall_Pos_t GPIO_Pin_2_Hall_Pos_t(uint16_t GPIO_Pin);
 __weak void Hall_Callback(Hall_Pos_t pos){}
 
 
-void HAL_GPIO_EXTI_Callback (uint16_t GPIO_Pin){
+void GPIO_EXTI_Callback (uint16_t GPIO_Pin){
 	Hall_Callback(GPIO_Pin_2_Hall_Pos_t(GPIO_Pin));
 }
 
