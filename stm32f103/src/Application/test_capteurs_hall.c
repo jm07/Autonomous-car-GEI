@@ -3,7 +3,7 @@
 
 static int c[HALL_NB]={0};
 
-void count_pulse(Hall_Pos_t pos);
+void count_pulse(int pos);
 
 int main(void) {
 	Hall_Config();
@@ -12,10 +12,10 @@ int main(void) {
   return 0;
 }
 
-void Hall_Callback(Hall_Pos_t pos){
+void Hall_Callback(int pos){
 		count_pulse(pos);
 }
 
-void count_pulse(Hall_Pos_t pos){
+void count_pulse(int pos){
 	c[(int)pos]++;
 }

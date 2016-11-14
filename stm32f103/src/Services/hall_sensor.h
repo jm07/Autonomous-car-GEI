@@ -34,6 +34,6 @@ typedef enum Hall_Pos_t {
 
 void Hall_Config(void);
 
-void Hall_Callback(Hall_Pos_t pos);
+void Hall_Callback(int pos);
 
 #endif // __HALL_SENSOR_H

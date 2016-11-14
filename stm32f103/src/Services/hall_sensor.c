@@ -46,10 +46,10 @@ void Hall_Config(void){
 
 static int GPIO_Pin_2_int(uint16_t GPIO_Pin);
 
-__weak void Hall_Callback(Hall_Pos_t pos){}
+__weak void Hall_Callback(int pos){}
 
 
-void GPIO_EXTI_Callback (uint16_t GPIO_Pin){
+void HALL_EXTI_Callback (uint16_t GPIO_Pin){
 	int pin = GPIO_Pin_2_int(GPIO_Pin);
 	if(pin != -1)
 		Hall_Callback(pin);
