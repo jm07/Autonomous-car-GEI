@@ -2,6 +2,7 @@
 #define _SERVICE_CONFIG_H_
 
 #include "stm32f10x_gpio.h"
+#include "time_systick.h"
 
 #define GPIO_SPEED  GPIO_Speed_50MHz
 
