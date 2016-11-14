@@ -51,7 +51,7 @@ __weak void Hall_Callback(int pos){}
 
 void HALL_EXTI_Callback (uint16_t GPIO_Pin){
 	int pin = GPIO_Pin_2_int(GPIO_Pin);
-	if(pin != -1)
+	//if(pin != -1)
 		Hall_Callback(pin);
 }
 
