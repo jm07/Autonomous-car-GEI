@@ -16,6 +16,7 @@ typedef struct {
 	uint8_t NVIC_IRQChannelSubPriority;
 } Sensor_IT_TypeDef;
 
+
 void Sensor_IT_Config(Sensor_IT_TypeDef* initStructSensor);
 
 unsigned int Sensor_IT_Read(Sensor_IT_TypeDef* structSensor);
