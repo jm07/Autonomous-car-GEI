@@ -7,10 +7,10 @@
 
 
 typedef struct {
-	uint16_t outputPin;
-	GPIO_TypeDef* outputPinPort;
-	GPIOSpeed_TypeDef speed;
-	GPIOMode_TypeDef mode;
+	uint16_t pin;
+	GPIO_TypeDef* port;
+	GPIOSpeed_TypeDef gpioSpeed;
+	GPIOMode_TypeDef gpioMode;
 } Sensor_Tri_TypeDef;
 
 void Sensor_Tri_Config(Sensor_Tri_TypeDef* initStructSensor);

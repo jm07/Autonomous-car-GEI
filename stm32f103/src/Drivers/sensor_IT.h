@@ -7,10 +7,10 @@
 #include "IT_functions.h"
 
 typedef struct {
-	uint16_t outputPin;
-	GPIO_TypeDef* outputPinPort;
-	GPIOSpeed_TypeDef speed;
-	GPIOMode_TypeDef mode;
+	uint16_t pin;
+	GPIO_TypeDef* port;
+	GPIOSpeed_TypeDef gpioSpeed;
+	GPIOMode_TypeDef gpioMode;
 	EXTITrigger_TypeDef triggerType;
 	uint8_t NVIC_IRQChannelPreemptionPriority;
 	uint8_t NVIC_IRQChannelSubPriority;

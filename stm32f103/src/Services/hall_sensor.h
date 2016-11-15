@@ -26,9 +26,9 @@
 #define subPrio_ARD 					  0x0F
 
 typedef enum Hall_Pos_t {
-	AVG = 0, 
-	AVD = 1, 
-	ARG = 2, 
+	AVG = 0,
+	AVD = 1,
+	ARG = 2,
 	ARD = 3
 } Hall_Pos_t;
 

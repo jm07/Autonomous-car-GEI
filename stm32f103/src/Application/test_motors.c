@@ -41,12 +41,10 @@ int main(void) {
   }
 }
 
-void Hall_Callback(Hall_Pos_t pos) {
+void Hall_Callback(int pos) {
   count_pulse(pos);
 	if(pos == AVD) {
-    disableFrontMotor();
   } else if (pos == AVG) {
-    disableFrontMotor();
 	} else if (pos == ARG) {
   } else if (pos == ARD) {
   }
