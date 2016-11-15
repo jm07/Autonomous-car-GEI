@@ -1,4 +1,4 @@
-
+#include <stdint.h>
 #include "services_config.h"
 #include "motor_front.h"
 #include "motor_rear.h"
@@ -24,9 +24,9 @@ int main(void) {
     } else if (front == 2) {
       commandFrontMotor(RIGHT);
       enableFrontMotor();
-    } else if (front == 3) enableFrontMotor();
-    else if (front == 4) disableFrontMotor();
-    else commandFrontMotor(STOP);
+    } else {
+      disableFrontMotor();
+    }
     
     // control rear motors
     if (rear == 1) {
@@ -42,10 +42,14 @@ int main(void) {
 }
 
 void Hall_Callback(Hall_Pos_t pos) {
-	if(pos == AVG || pos == AVD){
-		commandFrontMotor(STOP);
-		disableFrontMotor();
-	}
+  count_pulse(pos);
+	if(pos == AVD) {
+    disableFrontMotor();
+  } else if (pos == AVG) {
+    disableFrontMotor();
+	} else if (pos == ARG) {
+  } else if (pos == ARD) {
+  }
 }
 
 
