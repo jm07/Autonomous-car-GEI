@@ -5,10 +5,10 @@
 
 typedef enum Hall_Pos_t {
 	HALL_ERROR  = -1,
-	AVG = 0, 
-	AVD = 1, 
-	ARG = 2, 
-	ARD = 3
+	HALL_AVG = 0,
+	HALL_AVD = 1,
+	HALL_ARG = 2,
+	HALL_ARD = 3
 } Hall_Pos_t;
 
 void Hall_Config(void);

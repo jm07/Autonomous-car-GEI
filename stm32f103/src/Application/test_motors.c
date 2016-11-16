@@ -26,7 +26,7 @@ int main(void) {
     } else if (front == 3) enableFrontMotor();
     else if (front == 4) disableFrontMotor();
     else commandFrontMotor(STOP);
-    
+
     // control rear motors
     if (rear == 1) {
       enableRearMotor();
@@ -41,7 +41,7 @@ int main(void) {
 }
 
 void Hall_Callback(Hall_Pos_t pos) {
-	if(pos == AVG || pos == AVD){
+	if(pos == HALL_AVG || pos == HALL_AVD){
 		commandFrontMotor(STOP);
 		disableFrontMotor();
 	}
