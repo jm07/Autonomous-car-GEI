@@ -12,8 +12,7 @@ void Hall_Config(void) {
 	structSensor_AVG.gpioSpeed = GPIO_Speed_50MHz;
 	structSensor_AVG.gpioMode = GPIO_Mode_IPU;
 	structSensor_AVG.triggerType = EXTI_Trigger_Falling;
-	structSensor_AVG.NVIC_IRQChannelPreemptionPriority = preemptionPrio_AVG;
-	structSensor_AVG.NVIC_IRQChannelSubPriority = subPrio_AVG;
+	structSensor_AVG.priority = preemptionPrio_AVG;
 	Sensor_IT_Config(&structSensor_AVG);
 
 	structSensor_AVD.pin = pin_AVD;
@@ -21,8 +20,7 @@ void Hall_Config(void) {
 	structSensor_AVD.gpioSpeed = GPIO_Speed_50MHz;
 	structSensor_AVD.gpioMode = GPIO_Mode_IPU;
 	structSensor_AVD.triggerType = EXTI_Trigger_Falling;
-	structSensor_AVD.NVIC_IRQChannelPreemptionPriority = preemptionPrio_AVD;
-	structSensor_AVD.NVIC_IRQChannelSubPriority = subPrio_AVD;
+	structSensor_AVD.priority = preemptionPrio_AVD;
 	Sensor_IT_Config(&structSensor_AVD);
 
 	structSensor_ARG.pin = pin_ARG;
@@ -30,8 +28,7 @@ void Hall_Config(void) {
 	structSensor_ARG.gpioSpeed = GPIO_Speed_50MHz;
 	structSensor_ARG.gpioMode = GPIO_Mode_IPU;
 	structSensor_ARG.triggerType = EXTI_Trigger_Falling;
-	structSensor_ARG.NVIC_IRQChannelPreemptionPriority = preemptionPrio_ARG;
-	structSensor_ARG.NVIC_IRQChannelSubPriority = subPrio_ARG;
+	structSensor_ARG.priority = preemptionPrio_ARG;
 	Sensor_IT_Config(&structSensor_ARG);
 
 	structSensor_ARD.pin = pin_ARD;
@@ -39,8 +36,7 @@ void Hall_Config(void) {
 	structSensor_ARD.gpioSpeed = GPIO_Speed_50MHz;
 	structSensor_ARD.gpioMode = GPIO_Mode_IPU;
 	structSensor_ARD.triggerType = EXTI_Trigger_Falling;
-	structSensor_ARD.NVIC_IRQChannelPreemptionPriority = preemptionPrio_ARD;
-	structSensor_ARD.NVIC_IRQChannelSubPriority = subPrio_ARD;
+	structSensor_ARD.priority = preemptionPrio_ARD;
 	Sensor_IT_Config(&structSensor_ARD);
 }
 

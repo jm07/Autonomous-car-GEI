@@ -22,28 +22,28 @@
 #define ULTRASONIC_TRIG_PORT
 
 // Front center
-#define ULTRASONIC_AVC_PIN
-#define ULTRASONIC_AVC_PORT
+#define ULTRASONIC_AVC_ECHO_PIN
+#define ULTRASONIC_AVC_ECHO_PORT
 
 // Front left
-#define ULTRASONIC_AVG_PIN
-#define ULTRASONIC_AVG_PORT
+#define ULTRASONIC_AVG_ECHO_PIN
+#define ULTRASONIC_AVG_ECHO_PORT
 
 // Front right
-#define ULTRASONIC_AVD_PIN
-#define ULTRASONIC_AVD_PORT
+#define ULTRASONIC_AVD_ECHO_PIN
+#define ULTRASONIC_AVD_ECHO_PORT
 
 // Rear center
-#define ULTRASONIC_ARC_PIN
-#define ULTRASONIC_ARC_PORT
+#define ULTRASONIC_ARC_ECHO_PIN
+#define ULTRASONIC_ARC_ECHO_PORT
 
 // Rear left
-#define ULTRASONIC_ARG_PIN
-#define ULTRASONIC_ARG_PORT
+#define ULTRASONIC_ARG_ECHO_PIN
+#define ULTRASONIC_ARG_ECHO_PORT
 
 // Rear right
-#define ULTRASONIC_ARD_PIN
-#define ULTRASONIC_ARD_PORT
+#define ULTRASONIC_ARD_ECHO_PIN
+#define ULTRASONIC_ARD_ECHO_PORT
 
 
 // ------------------------------------------- //

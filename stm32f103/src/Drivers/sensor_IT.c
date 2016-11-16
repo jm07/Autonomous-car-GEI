@@ -1,42 +1,31 @@
 #include "sensor_IT.h"
 
 #define IF_DEFINE_NUM(n) \
-	if (initStructS->pin == GPIO_Pin_##n) { \
+	if (initStructSensor->pin == GPIO_Pin_##n) { \
 		GPIO_PinSource_Sensor = GPIO_PinSource##n;\
 		EXTI_Line_Sensor = EXTI_Line##n;\
 		EXTI_IRQn_Sensor = EXTI##n##_IRQn;\
 	}\
 
 #define IF_DEFINE_NUM_2(n,n1,n2) \
-	if (initStructS->pin == GPIO_Pin_##n) { \
+	if (initStructSensor->pin == GPIO_Pin_##n) { \
 		GPIO_PinSource_Sensor = GPIO_PinSource##n;\
 		EXTI_Line_Sensor = EXTI_Line##n;\
 		EXTI_IRQn_Sensor = EXTI##n1##_##n2##_IRQn;\
 	}\
 
-
-#define RCC_APBxPeriphClockCmd_GPIO_Sensor  RCC_APB2PeriphClockCmd
-#define RCC_APBxPeriph_GPIO_Sensor          RCC_APB2Periph_GPIOC
-
-Sensor_IT_TypeDef* initStructS;
-
-static void RCC_Configuration(void);
-static void GPIO_Configuration(void);
-static void EXTI_Config(void);
+// Private functions
+static void GPIO_Configuration(Sensor_IT_TypeDef* initStructSensor);
+static void EXTI_Config(Sensor_IT_TypeDef* initStructSensor);
 
 //public functions
 
 void Sensor_IT_Config(Sensor_IT_TypeDef* initStructSensor) {
-	initStructS = initStructSensor;
-
-   // System clocks configuration
-	RCC_Configuration();
-
-   // Configure the GPIO port
-   GPIO_Configuration();
+	// Configure the GPIO port
+	GPIO_Configuration(initStructSensor);
 
 	//Configure external interruption
-	EXTI_Config();
+	EXTI_Config(initStructSensor);
 }
 
 
@@ -44,47 +33,39 @@ unsigned int Sensor_IT_Read(Sensor_IT_TypeDef* structSensor) {
 	return GPIO_ReadInputDataBit(structSensor->port, structSensor->pin);
 }
 
-
-//Private functions
-
-void RCC_Configuration(void) {
-   // GPIO_Sensor clock enable
-   RCC_APBxPeriphClockCmd_GPIO_Sensor(RCC_APBxPeriph_GPIO_Sensor, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
-}
-
-void GPIO_Configuration(void) {
+// Private functions
+void GPIO_Configuration(Sensor_IT_TypeDef* initStructSensor) {
    GPIO_InitTypeDef GPIO_InitStructure;
 
    // GPIO_Pin_Sensor configuration
-   GPIO_InitStructure.GPIO_Pin = initStructS->pin;
-   GPIO_InitStructure.GPIO_Mode = initStructS->gpioMode;
-   GPIO_InitStructure.GPIO_Speed = initStructS->gpioSpeed;
+   GPIO_InitStructure.GPIO_Pin = initStructSensor->pin;
+   GPIO_InitStructure.GPIO_Mode = initStructSensor->gpioMode;
+   GPIO_InitStructure.GPIO_Speed = initStructSensor->gpioSpeed;
 
-   GPIO_Init(initStructS->port, &GPIO_InitStructure);
+   GPIO_Init(initStructSensor->port, &GPIO_InitStructure);
 }
 
-void EXTI_Config(void) {
+void EXTI_Config(Sensor_IT_TypeDef* initStructSensor) {
 	EXTI_InitTypeDef 	EXTI_InitStructure;
 	NVIC_InitTypeDef  NVIC_InitStructure;
-	uint8_t 				GPIO_PortSource_Sensor;
-	uint8_t 				GPIO_PinSource_Sensor;
-	uint32_t 			EXTI_Line_Sensor;
-	uint8_t 				EXTI_IRQn_Sensor;
+	uint8_t 					GPIO_PortSource_Sensor;
+	uint8_t 					GPIO_PinSource_Sensor;
+	uint32_t 					EXTI_Line_Sensor;
+	uint8_t 					EXTI_IRQn_Sensor;
 
-	if (initStructS->port == GPIOA) {
+	if (initStructSensor->port == GPIOA) {
 			GPIO_PortSource_Sensor = GPIO_PortSourceGPIOA;
-	} else if (initStructS->port == GPIOB) {
+	} else if (initStructSensor->port == GPIOB) {
 			GPIO_PortSource_Sensor = GPIO_PortSourceGPIOB;
-	} else if (initStructS->port == GPIOC) {
+	} else if (initStructSensor->port == GPIOC) {
 			GPIO_PortSource_Sensor = GPIO_PortSourceGPIOC;
-	} else if(initStructS->port == GPIOD) {
+	} else if(initStructSensor->port == GPIOD) {
 			GPIO_PortSource_Sensor = GPIO_PortSourceGPIOD;
-	} else if(initStructS->port == GPIOE) {
+	} else if(initStructSensor->port == GPIOE) {
 			GPIO_PortSource_Sensor = GPIO_PortSourceGPIOE;
-	} else if(initStructS->port == GPIOF) {
+	} else if(initStructSensor->port == GPIOF) {
 			GPIO_PortSource_Sensor = GPIO_PortSourceGPIOF;
-	} else if(initStructS->port == GPIOG) {
+	} else if(initStructSensor->port == GPIOG) {
 			GPIO_PortSource_Sensor = GPIO_PortSourceGPIOG;
 	}
 
@@ -105,18 +86,17 @@ void EXTI_Config(void) {
 	else IF_DEFINE_NUM_2(14,15,10)
 	else IF_DEFINE_NUM_2(15,15,10)
 
-
 	GPIO_EXTILineConfig(GPIO_PortSource_Sensor,  GPIO_PinSource_Sensor);
 
 	EXTI_InitStructure.EXTI_Line = EXTI_Line_Sensor;
 	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-	EXTI_InitStructure.EXTI_Trigger = initStructS->triggerType;
+	EXTI_InitStructure.EXTI_Trigger = initStructSensor->triggerType;
 	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStructure);
 
 	NVIC_InitStructure.NVIC_IRQChannel = EXTI_IRQn_Sensor;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = initStructS->NVIC_IRQChannelPreemptionPriority;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = initStructS->NVIC_IRQChannelSubPriority;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = initStructSensor->priority;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 }

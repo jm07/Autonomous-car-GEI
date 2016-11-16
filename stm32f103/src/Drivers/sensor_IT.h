@@ -1,7 +1,7 @@
 #ifndef __SENSOR_IT_H
 #define __SENSOR_IT_H
 
-#include <stdint.h>
+#include <misc.h>
 #include <stm32f10x_gpio.h>
 #include <stm32f10x_exti.h>
 #include "IT_functions.h"
@@ -12,8 +12,7 @@ typedef struct {
 	GPIOSpeed_TypeDef gpioSpeed;
 	GPIOMode_TypeDef gpioMode;
 	EXTITrigger_TypeDef triggerType;
-	uint8_t NVIC_IRQChannelPreemptionPriority;
-	uint8_t NVIC_IRQChannelSubPriority;
+	uint8_t priority;
 } Sensor_IT_TypeDef;
 
 

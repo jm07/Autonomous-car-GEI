@@ -5,9 +5,9 @@
 
 #define SYSTICK_MICROS  1000000
 
-static unsigned long long timeMicros;
+static uint64_t timeMicros;
 
 void initSystick(void);
-unsigned long long micros(void);
+uint64_t micros(void);
 
 #endif // _TIME_SYSTICK_H_
