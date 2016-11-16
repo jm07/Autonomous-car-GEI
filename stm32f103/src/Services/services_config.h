@@ -4,11 +4,78 @@
 #include "stm32f10x_gpio.h"
 #include "time_systick.h"
 
+// Global definitions
 #define GPIO_SPEED  GPIO_Speed_50MHz
 
-// ---------------------- //
-// ----- Rear motor ----- //
-// ---------------------- //
+// ------------------------------------------- //
+// ------------- Ultrasonic sensors ---------- //
+// ------------------------------------------- //
+
+// Number of ultra sonic sensors
+#define ULTRASONIC_NB 6
+
+// All ultrasonic sensor interrupts share the same priority
+#define ULTRASONIC_PRIO 10
+
+// All ultrasonic sensors share the same trigger pin
+#define ULTRASONIC_TRIG_PIN
+#define ULTRASONIC_TRIG_PORT
+
+// Front center
+#define ULTRASONIC_AVC_ECHO_PIN
+#define ULTRASONIC_AVC_ECHO_PORT
+
+// Front left
+#define ULTRASONIC_AVG_ECHO_PIN
+#define ULTRASONIC_AVG_ECHO_PORT
+
+// Front right
+#define ULTRASONIC_AVD_ECHO_PIN
+#define ULTRASONIC_AVD_ECHO_PORT
+
+// Rear center
+#define ULTRASONIC_ARC_ECHO_PIN
+#define ULTRASONIC_ARC_ECHO_PORT
+
+// Rear left
+#define ULTRASONIC_ARG_ECHO_PIN
+#define ULTRASONIC_ARG_ECHO_PORT
+
+// Rear right
+#define ULTRASONIC_ARD_ECHO_PIN
+#define ULTRASONIC_ARD_ECHO_PORT
+
+
+// ------------------------------------------- //
+// ---------------- Hall sensors-------------- //
+// ------------------------------------------- //
+
+// Number of hall sensors
+#define HALL_NB 4
+
+// All hall sensor interrupts share the same priority
+#define HALL_PRIO 15
+
+// Front left
+#define HALL_AVG_PIN  GPIO_Pin_9
+#define HALL_AVG_PORT GPIOC
+
+// Front right
+#define HALL_AVD_PIN  GPIO_Pin_5
+#define HALL_AVD_PORT GPIOC
+
+// Rear left
+#define HALL_ARG_PIN  GPIO_Pin_10
+#define HALL_ARG_PORT GPIOC
+
+// Rear right
+#define HALL_ARD_PIN  GPIO_Pin_15
+#define HALL_ARD_PORT GPIOC
+
+
+// ------------------------------------------- //
+// ---------------- Rear motor --------------- //
+// ------------------------------------------- //
 
 // IN1 pin
 #define REAR_MOTOR_IN1_PIN        GPIO_Pin_0
@@ -28,9 +95,9 @@
 #define REAR_MOTOR_TIMER          TIM3
 
 
-// ---------------------- //
-// ---- Front motor ----- //
-// ---------------------- //
+// ------------------------------------------- //
+// ---------------- Front motor -------------- //
+// ------------------------------------------- //
 
 // IN1 pin
 #define FRONT_MOTOR_IN1_PIN       GPIO_Pin_6
@@ -52,8 +119,9 @@
 // Speed
 #define FRONT_MOTOR_SPEED         30
 
-
-// ----- Init function ----- //
-void initServices(void); 
+// ------------------------------------------- //
+// -------------- Init function -------------- //
+// ------------------------------------------- //
+void initServices(void);
 
 #endif // _SERVICE_CONFIG_H_
