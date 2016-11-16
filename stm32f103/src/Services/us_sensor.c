@@ -13,11 +13,11 @@ uint64_t	counter[ULTRASONIC_NB] = {0};
 void US_echo_config(void){
 	structSensor_US_AVC.pin = ULTRASONIC_AVC_ECHO_PIN;
 	structSensor_US_AVC.port = ULTRASONIC_AVC_ECHO_PORT;
-	structSensor_US_AVC.gpioSpeed = GPIO_Speed_50MHz;
+	structSensor_US_AVC.gpioSpeed = GPIO_SPEED;
 	structSensor_US_AVC.gpioMode = GPIO_Mode_IPD;
 	structSensor_US_AVC.triggerType = EXTI_Trigger_Rising_Falling;
 	structSensor_US_AVC.priority = ULTRASONIC_PRIO;
-	Sensor_IT_Config(&structSensor_US_AVC);	
+	Sensor_IT_Config(&structSensor_US_AVC);
 }
 
 void US_tri_config(void){
@@ -47,7 +47,7 @@ void US_EXTI_Callback (uint16_t GPIO_Pin){
 	if(state[US_Pos] == 0){
 		state[US_Pos] = 1;
 		time_rising[US_Pos] = micros();
-	}else{  					
+	}else{
 		state[US_Pos] = 0;
 		counter[US_Pos] = micros() - time_rising[US_Pos];
 		US_Callback(US_Pos);
@@ -59,5 +59,3 @@ void US_EXTI_Callback (uint16_t GPIO_Pin){
 		return counter[US_Pos];
 	else return 0;
 }
-
-
