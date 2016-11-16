@@ -3,28 +3,6 @@
 
 #include <stdint.h>
 
-#define HALL_NB 			4
-
-#define pin_AVG 						    GPIO_Pin_9
-#define port_AVG						    GPIOC
-#define preemptionPrio_AVG 		  0x0F
-#define subPrio_AVG 					  0x0F
-
-#define pin_AVD 						    GPIO_Pin_5
-#define port_AVD						    GPIOC
-#define preemptionPrio_AVD 		  0x0F
-#define subPrio_AVD 					  0x0F
-
-#define pin_ARG 						    GPIO_Pin_10
-#define port_ARG						    GPIOC
-#define preemptionPrio_ARG 		  0x0F
-#define subPrio_ARG 					  0x0F
-
-#define pin_ARD 						    GPIO_Pin_15
-#define port_ARD						    GPIOC
-#define preemptionPrio_ARD 		  0x0F
-#define subPrio_ARD 					  0x0F
-
 typedef enum Hall_Pos_t {
 	HALL_ERROR  = -1,
 	AVG = 0, 

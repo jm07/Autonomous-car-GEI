@@ -2,10 +2,11 @@
 #include "us_sensor.h"
 #include "time_systick.h"
 #include "hall_sensor.h"
+#include "services_config.h"
 
 #define TEMPS_TRIG 50e3
 #define TEMPS_DUREE 15e3
-static uint64_t d[US_NB]={0};
+static uint64_t d[ULTRASONIC_NB]={0};
 uint64_t t_temp =0;
 uint64_t t_now =0;
 int trig_state = 0;

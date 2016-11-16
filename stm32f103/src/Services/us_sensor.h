@@ -3,20 +3,6 @@
 
 #include <stdint.h>
 
-#define US_NB 		6
-#define pin_US_AV1 						    GPIO_Pin_8
-#define port_US_AV1						    GPIOC
-#define preemptionPrio_US_AV1 		  0x0F
-#define subPrio_US_AV1 					  0x0F
-
-#define pin_US_AV2 						    GPIO_Pin_2
-#define pin_US_AV3 						    GPIO_Pin_3
-#define pin_US_AR1 						    GPIO_Pin_4
-#define pin_US_AR2 						    GPIO_Pin_7
-#define pin_US_AR3 						    GPIO_Pin_8
-
-#define pin_US_TRI 						    GPIO_Pin_6
-#define port_US_TRI 						    GPIOC
 
 typedef enum US_Pos_t {
 	US_ERROR  = -1,
