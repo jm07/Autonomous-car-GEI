@@ -4,8 +4,7 @@
 
 #define EXTI_CALLBACKS(n) \
 	if(EXTI_GetITStatus(EXTI_Line##n) != RESET){\
-		HALL_EXTI_Callback(GPIO_Pin_##n);\
-		US_EXTI_Callback(GPIO_Pin_##n);\
+		GPIO_EXTI_Callback(GPIO_Pin_##n);\
 		EXTI_ClearITPendingBit(EXTI_Line##n);\
 	}\
 
@@ -18,9 +17,8 @@ void EXTI4_IRQHandler(void);
 void EXTI9_5_IRQHandler(void);
 void EXTI15_10_IRQHandler (void);
 
-__weak void US_EXTI_Callback (uint16_t GPIO_Pin){}
-__weak void HALL_EXTI_Callback (uint16_t GPIO_Pin){}
-
+__weak void GPIO_EXTI_Callback (uint16_t GPIO_Pin){}	
+	
 void EXTI0_IRQHandler(void){
 	EXTI_CALLBACKS(0);
 }

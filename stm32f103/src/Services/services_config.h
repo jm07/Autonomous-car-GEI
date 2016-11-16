@@ -32,7 +32,7 @@
 // ---- Front motor ----- //
 // ---------------------- //
 
-// IN1 pin 
+// IN1 pin
 #define FRONT_MOTOR_IN1_PIN       GPIO_Pin_6
 #define FRONT_MOTOR_IN1_PORT      GPIOA
 #define FRONT_MOTOR_IN1_CHANNEL   TIM_Channel_1

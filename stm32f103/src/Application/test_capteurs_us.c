@@ -9,7 +9,7 @@ static uint64_t d[US_NB]={0};
 uint64_t t_temp =0;
 uint64_t t_now =0;
 int trig_state = 0;
-int sous = 0;
+uint64_t sous = 0;
 
 int main(void) {
 	Hall_Config();
@@ -34,8 +34,8 @@ int main(void) {
   return 0;
 }
 
-void US_Callback(int pos){
-		d[pos] = US_pulse_duration(pos)/58;
+void US_Callback(US_Pos_t pos){
+		d[pos] = US_pulse_duration(pos);
 }
 
 

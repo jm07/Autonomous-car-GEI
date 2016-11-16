@@ -1,4 +1,6 @@
 #include "hall_sensor.h"
+#include "sensor_IT.h"
+#include "callback_functions.h"
 
 Sensor_IT_TypeDef structSensor_AVG;
 Sensor_IT_TypeDef structSensor_AVD;
@@ -44,24 +46,11 @@ void Hall_Config(void){
 	Sensor_IT_Config(&structSensor_ARD);
 }
 
-static int GPIO_Pin_2_int(uint16_t GPIO_Pin);
-
-__weak void Hall_Callback(int pos){}
+__weak void Hall_Callback(Hall_Pos_t pos){}
 
 
 void HALL_EXTI_Callback (uint16_t GPIO_Pin){
-	int pin = GPIO_Pin_2_int(GPIO_Pin);
-	//if(pin != -1)
-		Hall_Callback(pin);
-}
-
-
-int GPIO_Pin_2_int(uint16_t GPIO_Pin){
-			 if(GPIO_Pin == pin_AVG) return AVG;
-	else if(GPIO_Pin == pin_AVD) return AVD;
-	else if(GPIO_Pin == pin_ARG) return ARG;
-	else if(GPIO_Pin == pin_ARD) return ARD;
-	else return -1;
+	Hall_Callback(Hall_Pin_2_int(GPIO_Pin));
 }
 
 
