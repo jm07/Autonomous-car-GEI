@@ -106,8 +106,12 @@
 #define REAR_MOTOR_IN2_CHANNEL    TIM_Channel_4
 
 // EN pin
+/*
 #define REAR_MOTOR_EN_PIN         GPIO_Pin_4
 #define REAR_MOTOR_EN_PORT        GPIOA
+*/
+#define REAR_MOTOR_EN_PIN         GPIO_Pin_6
+#define REAR_MOTOR_EN_PORT        GPIOC
 
 // Timer
 #define REAR_MOTOR_TIMER          TIM3
@@ -128,8 +132,12 @@
 #define FRONT_MOTOR_IN2_CHANNEL   TIM_Channel_2
 
 // EN pin
+/*
 #define FRONT_MOTOR_EN_PIN        GPIO_Pin_5
 #define FRONT_MOTOR_EN_PORT       GPIOA
+*/
+#define FRONT_MOTOR_EN_PIN        GPIO_Pin_9
+#define FRONT_MOTOR_EN_PORT       GPIOC
 
 // Timer
 #define FRONT_MOTOR_TIMER         TIM3
