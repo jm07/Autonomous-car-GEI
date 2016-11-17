@@ -24,7 +24,7 @@ int main(void) {
 }
 
 void ultrasonic_callback(Ultrasonic_Position pos){
-		d[pos] = ultrasonic_get_pulse_duration(pos);
+		d[pos] = ultrasonic_get_distance(pos);
 }
 
 

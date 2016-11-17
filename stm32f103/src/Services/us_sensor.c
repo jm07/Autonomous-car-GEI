@@ -49,7 +49,7 @@ void ultrasonic_trig_all(void){
 	ultrasonic_trigger();
 	t_trig = micros();
 	while(micros() - t_trig > TEMPS_DUREE){};
-	
+	ultrasonic_untrigger();
 }
 
 void ultrasonic_trigger(void){
@@ -76,8 +76,6 @@ void ultrasonic_exti_callback (uint16_t GPIO_Pin){
 	}
 }
 
- uint64_t ultrasonic_get_pulse_duration(Ultrasonic_Position pos){
-	if(pos != -1)
-		return counter[pos];
-	else return 0;
+ uint64_t ultrasonic_get_distance(Ultrasonic_Position pos){
+		return counter[pos]*17/100;
 }

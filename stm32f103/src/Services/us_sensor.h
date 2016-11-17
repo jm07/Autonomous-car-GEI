@@ -15,7 +15,7 @@ typedef enum Ultrasonic_Position {
 } Ultrasonic_Position;
 
 
-uint64_t ultrasonic_get_pulse_duration(Ultrasonic_Position pos);
+uint64_t ultrasonic_get_distance(Ultrasonic_Position pos);
 
 void ultrasonic_trig_all(void);
 
