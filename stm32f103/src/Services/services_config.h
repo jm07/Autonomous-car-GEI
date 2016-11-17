@@ -57,20 +57,36 @@
 #define HALL_PRIO 15
 
 // Front left
+/*
 #define HALL_AVG_PIN  GPIO_Pin_9
 #define HALL_AVG_PORT GPIOC
+*/
+#define HALL_AVG_PIN  GPIO_Pin_5
+#define HALL_AVG_PORT GPIOB
 
 // Front right
+/*
 #define HALL_AVD_PIN  GPIO_Pin_5
 #define HALL_AVD_PORT GPIOC
+*/
+#define HALL_AVD_PIN  GPIO_Pin_6
+#define HALL_AVD_PORT GPIOB
 
 // Rear left
+/*
 #define HALL_ARG_PIN  GPIO_Pin_10
 #define HALL_ARG_PORT GPIOC
+*/
+#define HALL_ARG_PIN  GPIO_Pin_10
+#define HALL_ARG_PORT GPIOB
 
 // Rear right
+/*
 #define HALL_ARD_PIN  GPIO_Pin_15
 #define HALL_ARD_PORT GPIOC
+*/
+#define HALL_ARD_PIN  GPIO_Pin_11
+#define HALL_ARD_PORT GPIOB
 
 
 // ------------------------------------------- //
