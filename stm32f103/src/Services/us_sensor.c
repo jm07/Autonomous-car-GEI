@@ -10,6 +10,14 @@ Sensor_IT_TypeDef structSensor_US_AVC;
 
 uint64_t	counter[ULTRASONIC_NB] = {0};
 
+static void ultrasonic_trigger(void);
+
+static void ultrasonic_untrigger(void);
+
+static void ultrasonic_config_echo_pin(void);
+
+static void ultrasonic_config_trig_pin(void);
+
 
 void ultrasonic_config_echo_pin(void){
 	structSensor_US_AVC.pin = ULTRASONIC_AVC_ECHO_PIN;
@@ -29,6 +37,19 @@ void ultrasonic_config_trig_pin(void){
    GPIO_InitStructure.GPIO_Speed = GPIO_SPEED;
 
    GPIO_Init(ULTRASONIC_TRIG_PORT, &GPIO_InitStructure);
+}
+
+void ultrasonic_config(void){
+	ultrasonic_config_echo_pin();
+	ultrasonic_config_trig_pin();
+}
+
+void ultrasonic_trig_all(void){
+	uint64_t t_trig = 0;
+	ultrasonic_trigger();
+	t_trig = micros();
+	while(micros() - t_trig > TEMPS_DUREE){};
+	
 }
 
 void ultrasonic_trigger(void){

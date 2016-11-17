@@ -45,6 +45,8 @@
 #define ULTRASONIC_ARD_ECHO_PIN	GPIO_Pin_8
 #define ULTRASONIC_ARD_ECHO_PORT	GPIOC
 
+#define TEMPS_TRIG 50e3
+#define TEMPS_DUREE 15e3
 
 // ------------------------------------------- //
 // ---------------- Hall sensors-------------- //
