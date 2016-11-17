@@ -5,8 +5,8 @@
 #include "hall_sensor.h"
 #include "us_sensor.h"
 
-Hall_Pos_t Hall_Pin_2_int(uint16_t GPIO_Pin);
-US_Pos_t US_Pin_2_int(uint16_t GPIO_Pin);
+Hall_Position       get_hall_position(uint16_t GPIO_Pin);
+Ultrasonic_Position get_ultrasonic_position(uint16_t GPIO_Pin);
 
 
 #endif // __SCALLBACK_FUNCTIONS_H

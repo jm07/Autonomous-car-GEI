@@ -14,20 +14,20 @@ uint64_t sous = 0;
 
 int main(void) {
 	Hall_Config();
-	US_echo_config();
-	US_tri_config();
+	ultrasonic_config_echo_pin();
+	ultrasonic_config_trig_pin();
 	initSystick();
 	t_now = micros();
 	while(1){
 		t_now = micros();
 		if(t_now - t_temp > TEMPS_TRIG){
-			trig();
+			ultrasonic_trigger();
 			trig_state = 1;
 			t_temp = micros();
 		}
 		sous = t_now - t_temp;
 		if(sous > TEMPS_DUREE && trig_state){
-			untrig();
+			ultrasonic_untrigger();
 			trig_state = 0;
 		}
 	}
@@ -35,8 +35,8 @@ int main(void) {
   return 0;
 }
 
-void US_Callback(US_Pos_t pos){
-		d[pos] = US_pulse_duration(pos);
+void ultrasonic_callback(Ultrasonic_Position pos){
+		d[pos] = ultrasonic_get_pulse_duration(pos);
 }
 
 

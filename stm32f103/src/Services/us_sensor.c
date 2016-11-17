@@ -1,3 +1,4 @@
+
 #include "us_sensor.h"
 #include "time_systick.h"
 #include "sensor_IT.h"
@@ -10,7 +11,7 @@ Sensor_IT_TypeDef structSensor_US_AVC;
 uint64_t	counter[ULTRASONIC_NB] = {0};
 
 
-void US_echo_config(void){
+void ultrasonic_config_echo_pin(void){
 	structSensor_US_AVC.pin = ULTRASONIC_AVC_ECHO_PIN;
 	structSensor_US_AVC.port = ULTRASONIC_AVC_ECHO_PORT;
 	structSensor_US_AVC.gpioSpeed = GPIO_SPEED;
@@ -20,7 +21,7 @@ void US_echo_config(void){
 	Sensor_IT_Config(&structSensor_US_AVC);
 }
 
-void US_tri_config(void){
+void ultrasonic_config_trig_pin(void){
 	GPIO_InitTypeDef GPIO_InitStructure;
 
    GPIO_InitStructure.GPIO_Pin = ULTRASONIC_TRIG_PIN;
@@ -30,32 +31,32 @@ void US_tri_config(void){
    GPIO_Init(ULTRASONIC_TRIG_PORT, &GPIO_InitStructure);
 }
 
-void trig(void){
+void ultrasonic_trigger(void){
 	GPIO_WriteBit(ULTRASONIC_TRIG_PORT, ULTRASONIC_TRIG_PIN, Bit_SET);
 }
 
-void untrig(void){
+void ultrasonic_untrigger(void){
 	GPIO_WriteBit(ULTRASONIC_TRIG_PORT, ULTRASONIC_TRIG_PIN, Bit_RESET);
 }
 
-__weak void US_Callback(US_Pos_t pos){}
+__weak void ultrasonic_callback(Ultrasonic_Position pos){}
 
-void US_EXTI_Callback (uint16_t GPIO_Pin){
+void ultrasonic_exti_callback (uint16_t GPIO_Pin){
 	static int state[ULTRASONIC_NB] = {0};
 	static uint64_t time_rising[ULTRASONIC_NB] = {0};
-	US_Pos_t US_Pos = US_Pin_2_int(GPIO_Pin);
-	if(state[US_Pos] == 0){
-		state[US_Pos] = 1;
-		time_rising[US_Pos] = micros();
+	Ultrasonic_Position position = get_ultrasonic_position(GPIO_Pin);
+	if(state[position] == 0){
+		state[position] = 1;
+		time_rising[position] = micros();
 	}else{
-		state[US_Pos] = 0;
-		counter[US_Pos] = micros() - time_rising[US_Pos];
-		US_Callback(US_Pos);
+		state[position] = 0;
+		counter[position] = micros() - time_rising[position];
+		ultrasonic_callback(position);
 	}
 }
 
- uint64_t US_pulse_duration(US_Pos_t US_Pos){
-	if(US_Pos != -1)
-		return counter[US_Pos];
+ uint64_t ultrasonic_get_pulse_duration(Ultrasonic_Position pos){
+	if(pos != -1)
+		return counter[pos];
 	else return 0;
 }

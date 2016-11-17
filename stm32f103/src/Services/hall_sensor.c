@@ -43,11 +43,9 @@ void Hall_Config(void){
 	Sensor_IT_Config(&structSensor_ARD);
 }
 
-__weak void Hall_Callback(Hall_Pos_t pos){}
 
+__weak void hall_callback(Hall_Position pos){}
 
-void HALL_EXTI_Callback (uint16_t GPIO_Pin){
-	Hall_Callback(Hall_Pin_2_int(GPIO_Pin));
+void hall_exti_callback (uint16_t GPIO_Pin){
+	hall_callback(get_hall_position(GPIO_Pin));
 }
-
-
