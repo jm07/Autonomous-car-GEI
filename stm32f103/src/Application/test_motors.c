@@ -8,7 +8,7 @@ __IO int rear = 0;
 
 static int c[HALL_NB]={0};
 
-void count_pulse(Hall_Pos_t pos);
+void count_pulse(Hall_Position pos);
 
 int main(void) {
   initServices();
@@ -26,7 +26,7 @@ int main(void) {
     } else if (front == 3) enableFrontMotor();
     else if (front == 4) disableFrontMotor();
     else commandFrontMotor(STOP);
-    
+
     // control rear motors
     if (rear == 1) {
       enableRearMotor();
@@ -40,14 +40,14 @@ int main(void) {
   }
 }
 
-void Hall_Callback(Hall_Pos_t pos) {
-	if(pos == AVG || pos == AVD){
+void Hall_Callback(Hall_Position pos) {
+	if(pos == HALL_AVG || pos == HALL_AVD){
 		commandFrontMotor(STOP);
 		disableFrontMotor();
 	}
 }
 
 
-void count_pulse(Hall_Pos_t pos){
+void count_pulse(Hall_Position pos){
 	c[(int)pos]++;
 }
