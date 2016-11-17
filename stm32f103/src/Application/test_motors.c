@@ -7,8 +7,7 @@
 __IO int front = 0;
 __IO int rear = 0;
 
-uint64_t cpt = 500;
-uint64_t tps = 0;
+uint64_t front_pos = 0;
 
 static int c[HALL_NB]={0};
 
@@ -32,10 +31,10 @@ int main(void) {
 		}
 		
 		// control front motor
-		if (front == 1) {
+		if ((front == 1) && (front_pos != front)) {
 			enableFrontMotor();
 			commandFrontMotor(LEFT);
-		} else if (front == 2) {
+		} else if ((front == 2) && (front_pos != front)) {
 			enableFrontMotor();
 			commandFrontMotor(RIGHT);
 		} /*else if (front == 3) enableFrontMotor();
@@ -52,12 +51,10 @@ int main(void) {
 
 void hall_callback(Hall_Position pos){
 	count_pulse(pos);
-	/*while(tps < cpt){
-		tps++;
-	}*/
 	if(pos == HALL_AVG || pos == HALL_AVD){
 		//commandFrontMotor(STOP);
 		disableFrontMotor();
+		front_pos = front;
 		front = 0;
 	}
 }
